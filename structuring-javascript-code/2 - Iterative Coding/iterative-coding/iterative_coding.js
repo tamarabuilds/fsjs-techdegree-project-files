@@ -10,5 +10,11 @@ const letter = "b";
   * @return {string} Word after letter has been replaced
   */
 function replaceLetter(string, index, letter){
+  const splitString = string.split("")
+  splitString[index] = letter
+  const newString = splitString.join('')
 
+  return newString
 }
+
+console.log(replaceLetter(word, index, letter))
