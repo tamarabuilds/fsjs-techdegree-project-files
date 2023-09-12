@@ -1,12 +1,17 @@
-const btnUpdate = document.querySelector('.btn-main');
+const btnCreate = document.querySelector('.btn-main');
 const btnToggle = document.querySelector('.btn-toggle');
 
-btnUpdate.addEventListener('click', () => {
-  const headline = document.getElementById('headline');													 
-  const input = document.querySelector('.input-main');
+btnCreate.addEventListener('click', () => {
+	const input = document.querySelector('.input-main');
+	const list = document.querySelector('ul')
 
-  headline.className = 'grow';
-  headline.textContent = input.value;
+	list.insertAdjacentHTML(
+		'afterbegin',
+		`<li>${input.value}</li>`
+
+
+	)
+
   input.value = '';
 });
 
