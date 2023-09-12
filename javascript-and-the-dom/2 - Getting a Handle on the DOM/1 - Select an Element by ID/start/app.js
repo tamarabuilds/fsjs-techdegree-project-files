@@ -1,5 +1,10 @@
-const body = document.body;
+const headline = document.getElementById('headline')
+const main = document.getElementById('btn-main')
 
-body.addEventListener('click', () => {
-  body.innerHTML = '<h1>Hello, world!</h1>';														 
-});
+
+headline.style.border = `solid 2px red`
+
+main.addEventListener('click', () => {
+  main.style.border = 'solid 2px yellow'
+
+})
