@@ -2,10 +2,7 @@ const form = document.getElementById('registrar')
 const input = form.querySelector('input')
 const ul = document.getElementById('invitedList')
 
-form.addEventListener('submit', (event)=> {
-    event.preventDefault()
-    const text = input.value
-    input.value = ''
+function createLI(text){
     const li = document.createElement('li')
     li.textContent = text
     const label = document.createElement('label')
@@ -14,6 +11,20 @@ form.addEventListener('submit', (event)=> {
     checkbox.type = 'checkbox'
     label.appendChild(checkbox)
     li.appendChild(label)
+    
+    const button = document.createElement('button')
+    button.textContent = 'Remove'
+    li.appendChild(button)
+
+    return li
+}
+
+form.addEventListener('submit', (event)=> {
+    event.preventDefault()
+    const text = input.value
+    input.value = ''
+    const li = createLI(text)
+
     ul.appendChild(li)
     
 })
@@ -27,5 +38,14 @@ ul.addEventListener('change', (event)=> {
         listItem.className = 'responded'
     } else {
         listItem.className = ''
+    }
+})
+
+ul.addEventListener('click', (event)=> {
+    if (event.target.tagName === "BUTTON"){
+        const li = event.target.parentNode
+        const ul = li.parentNode
+        ul.removeChild(li)
+        // event.target.parentNode.style.display = 'none'
     }
 })
