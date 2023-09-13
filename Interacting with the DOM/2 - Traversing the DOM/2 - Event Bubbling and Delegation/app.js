@@ -4,10 +4,14 @@ const btnToggle = document.querySelector(".btn-toggle");
 const btnRemove = document.querySelector(".btn-remove");
 const taskList = document.querySelector(".list-container ul");
 
+
+
 taskList.addEventListener("mouseover", (event) => {
-	if (event.target.tagName == "LI") {
-		event.target.textContent = event.target.textContent.toUpperCase();
+	if (event.target.tagName === 'LI'){
+		event.target.textContent = event.target.textContent.toUpperCase()
 	}
+	// console.log(event)
+
 });
 
 btnToggle.addEventListener("click", () => {
