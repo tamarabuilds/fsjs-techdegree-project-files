@@ -43,9 +43,10 @@ function showPage(array, page) {
   // 5. Create a variable to represent which author to end with on the page.
   //    The math should be (the page multiplied by the authorsPerPage) minus one
   const authorEnd = (page * authorsPerPage) - 1     // minus 1 for starting at zero index
-  // 6. Reset the authorContainer's content to nothing to prevent previous cards staying on the page            //!!!!!!?!?!?!
+  // 6. Reset the authorContainer's content to nothing to prevent previous cards staying on the page
 
-  // while ()
+  // Learned how to clear contents by erasing the innerHTML value: https://www.tutorialspoint.com/How-can-I-remove-all-child-elements-of-a-DOM-node-in-JavaScript
+    authorContainer.innerHTML = ''
 
 
   // 7-a. Start a loop to the length of the array's length
@@ -93,7 +94,8 @@ paginationList.addEventListener("click", (e) => {
 
     activeButton.className = ''
     clickedButton.className = 'active'
-    showPage(authors, activeButton.textContent)
+    // console.log(`Is this the page number just clicked? Page: ${clickedButton.textContent}`)
+    showPage(authors, clickedButton.textContent)
   }
 });
 
