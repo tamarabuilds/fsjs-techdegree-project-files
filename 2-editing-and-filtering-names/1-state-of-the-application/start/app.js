@@ -1,6 +1,43 @@
 const form = document.getElementById('registrar');
 const input = form.querySelector('input');
+
+const mainDiv = document.querySelector('.main')
 const ul = document.getElementById('invitedList');
+
+const div = document.createElement('div')
+const filterLabel = document.createElement('label')
+const filterCheckbox = document.createElement('input')
+
+filterLabel.textContent = "Hide those who haven't responded"
+filterCheckbox.type = 'checkbox'
+div.appendChild(filterLabel)
+div.appendChild(filterCheckbox)
+mainDiv.insertBefore(div, ul)
+
+filterCheckbox.addEventListener('change', (e)=> {
+  const isChecked = e.target.checked
+  const lis = ul.children
+  
+  if (isChecked) {
+    for ( let i = 0; i < lis.length; i++){
+      let li = lis[i]
+      if ( li.className === 'responded' ) {
+        li.style.display = 'none'
+      } else {
+        li.style.display = ''
+      }
+    }
+  } else {
+    for ( let i = 0; i < lis.length; i++){
+      let li = lis[i]
+      li.style.display = ''
+    }
+  }
+
+})
+  
+  
+  
 
 function createLI(text) {
   const li = document.createElement('li');
@@ -35,7 +72,7 @@ form.addEventListener('submit', (e) => {
 });
   
 ul.addEventListener('change', (e) => {
-  const checkbox = event.target;
+  const checkbox = e.target;
   const checked = checkbox.checked;
   const listItem = checkbox.parentNode.parentNode;
   
@@ -74,10 +111,7 @@ ul.addEventListener('click', (e) => {
   }
 });  
   
-  
-  
-  
-  
+
   
   
   
