@@ -12,9 +12,9 @@ function handlePagination(array) {
   // 1. Create a variable to store the number of buttons needed.
   //    The math should be (the length of the array divided by the authorsPerPage) rounded up
   //    Hint: Math.ceil()
-  const pages = Math.ceil(array.length / authorsPerPage)
+  const numberOfButtons = Math.ceil(array.length / authorsPerPage)
   // 2-a. Start a loop to the length of the number of buttons calculated above.
-  for ( let i = 1; i <= pages; i++){
+  for ( let i = 1; i <= numberOfButtons; i++){
     // 2-b. Inside, create a variable storing a template literal of the HTML markup of a button
     //      (see example in index.html lines 34 - 36).
     let html = `<li>
@@ -26,10 +26,10 @@ function handlePagination(array) {
   }
   // 3. Add the `active` class to the first button
   //    Hint: querySelector()
-  const firstPageNumber = paginationList.querySelector('li')            // is there a better way to select?
-  firstPageNumber.className = 'active'
-  // console.log(paginationList)
-  // console.log(firstPageNumber)
+  // const firstPageNumber = paginationList.querySelector('li')            // is there a better way to select? This was my first try and it only selected the LI. that's why it looked off
+  // firstPageNumber.className = 'active'
+  paginationList.querySelector('button').classList.add('active')          // this was the solution.
+
   
 }
 
@@ -83,17 +83,22 @@ paginationList.addEventListener("click", (e) => {
   // 8. Create a variable to store the button which currently has the `active` class
   // console.log(e)
   let activeButton = document.querySelector('.active')
-  const clickedButton = e.target
+
+  const clickedButton = e.target.closest('button')          // my solution didn't include closest
+
   // 9-a. Make sure the user has clicked a `button`
   //      Hint: e.target
-  if ( clickedButton.type === 'button'){
+  if ( clickedButton){
     // 9-b. If true...
     //      - Remove the `active` class from the currently active button
     //      - Add the `active` class to the button just clicked
     //      - Call showPage() passing it `authors` and the content of the button just clicked.
 
-    activeButton.className = ''
-    clickedButton.className = 'active'
+    // activeButton.className = ''              // I didn't include remove or add before
+    // clickedButton.className = 'active'
+    activeButton.classList.remove('active')
+    clickedButton.classList.add('active')
+
     // console.log(`Is this the page number just clicked? Page: ${clickedButton.textContent}`)
     showPage(authors, clickedButton.textContent)
   }
